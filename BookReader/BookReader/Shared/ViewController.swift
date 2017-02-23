@@ -10,147 +10,209 @@ class ViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    navigationCompletion?(self)NavigationSequence
+    navigationCompletion?()
+    navigationCompletion = nil
   }
   
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
     
-    navigationCompletion?(self)
+    navigationCompletion?()
+    navigationCompletion = nil
   }
   
-  var navigationCompletion: ((ViewController) -> Void)?
+  var navigationCompletion: ((Void) -> Void)?
+}
+
+class NavigationTask {
+  var sequence: NavigationSequence!
+  var animated: Bool!
   
-  func navigator() -> Navigator {
-    let navigator = Navigator()
-    navigator.navigationController = (navigationController ?? presentingViewController?.navigationController)!
-    navigator.viewController = self
-    return navigator
+  init(sequence: NavigationSequence, animated: Bool = false) {
+    self.sequence = sequence
+    self.animated = animated
+  }
+  
+  func perform() {
+    // abstract
+  }
+}
+
+class PushTask: NavigationTask {
+  var viewControllerToPush: ViewController!
+  
+  init(viewControllerToPush: ViewController, sequence: NavigationSequence, animated: Bool = false) {
+    super.init(sequence: sequence, animated: animated)
+    
+    self.viewControllerToPush = viewControllerToPush
+  }
+  
+  override func perform() {
+    print(self)
+    
+    viewControllerToPush.navigationCompletion = {
+      DispatchQueue.main.async {
+        self.sequence.navigate()
+      }
+    }
+    
+    sequence.navigationController.pushViewController(viewControllerToPush, animated: animated)
+  }
+}
+
+class PopTask: NavigationTask {
+  override func perform() {
+    topViewControllerAfterPop.navigationCompletion = {
+      self.sequence.navigate()
+    }
+    
+    sequence.navigationController.popViewController(animated: animated)
+  }
+  
+  var topViewControllerAfterPop: ViewController {
+    let viewControllers = sequence.navigationController.viewControllers
+    let count = viewControllers.count
+    let newTopIndex = count > 1 ? count - 2 : 0
+    let top = viewControllers[newTopIndex] as! ViewController
+    return top
+  }
+}
+
+class PresentTask: NavigationTask {
+  var viewControllerToPresent: ViewController!
+  
+  init(viewControllerToPresent: ViewController, sequence: NavigationSequence, animated: Bool = false) {
+    super.init(sequence: sequence, animated: animated)
+    
+    self.viewControllerToPresent = viewControllerToPresent
+  }
+  
+  override func perform() {
+    viewControllerToPresent.navigationCompletion = {
+      self.sequence.navigate()
+    }
+    
+    sequence.navigationController.present(viewControllerToPresent, animated: animated, completion: nil)
+  }
+}
+
+class DismissTask: NavigationTask {
+  override func perform() {
+    topViewControllerAfterDismiss.navigationCompletion = {
+      self.sequence.navigate()
+    }
+    
+    sequence.navigationController.dismiss(animated: animated, completion: nil)
+  }
+  
+  var topViewControllerAfterDismiss: ViewController {
+    return sequence.navigationController.topViewController as! ViewController
   }
 }
 
 class NavigationSequence {
-  
   var navigationController: UINavigationController!
   var viewController: ViewController!
-  var navigationBlock: ((Void) -> Void)?
-  var animated = true
-  var canNavigate = true {
-    didSet {
-      if !oldValue && canNavigate {
-        navigate()
-      }
-    }
+  var sequence = [NavigationTask]()
+  
+  class func instantiate(for viewController: ViewController) -> NavigationSequence {
+    let sequence = NavigationSequence()
+    sequence.navigationController = (viewController.navigationController ?? viewController.presentingViewController as? UINavigationController)!
+    sequence.viewController = viewController
+    return sequence
   }
   
   @discardableResult
-  func pushAnimated(_ viewController: ViewController) -> Navigator {
-    return scheduleNavigation(viewController: viewController, navigationBlock: doPush, animated: true)
+  func pushAnimated(_ viewController: ViewController) -> NavigationSequence {
+    let task = PushTask(viewControllerToPush: viewController, sequence: self, animated: true)
+    sequence.append(task)
+    return self
   }
   
   @discardableResult
-  func push(_ viewController: ViewController) -> Navigator {
-    return scheduleNavigation(viewController: viewController, navigationBlock: doPush, animated: false)
+  func push(_ viewController: ViewController) -> NavigationSequence {
+    let task = PushTask(viewControllerToPush: viewController, sequence: self)
+    sequence.append(task)
+    return self
   }
   
   @discardableResult
-  func popAnimated() -> Navigator {
-    let newTopViewController = topViewControllerAfterPop()
-    return scheduleNavigation(viewController: newTopViewController, navigationBlock: doPop, animated: true)
-  }
-  
-  func topViewControllerAfterPop() -> ViewController {
-    let viewControllers = navigationController.viewControllers
-    let count = viewControllers.count
-    let newTopIndex = count > 1 ? count - 2 : 0
-    return viewControllers[newTopIndex] as! ViewController
+  func popAnimated() -> NavigationSequence {
+    let task = PopTask(sequence: self, animated: true)
+    sequence.append(task)
+    return self
   }
   
   @discardableResult
-  func pop() -> Navigator {
-    let newTopViewController = topViewControllerAfterPop()
-    return scheduleNavigation(viewController: newTopViewController, navigationBlock: doPop, animated: false)
+  func pop() -> NavigationSequence {
+    let task = PopTask(sequence: self)
+    sequence.append(task)
+    return self
   }
   
   @discardableResult
-  func presentAnimated(_ viewController: ViewController) -> Navigator {
-    return scheduleNavigation(viewController: viewController, navigationBlock: doPresent, animated: true)
+  func presentAnimated(_ viewController: ViewController) -> NavigationSequence {
+    let task = PresentTask(viewControllerToPresent: viewController, sequence: self, animated: true)
+    sequence.append(task)
+    return self
   }
   
   @discardableResult
-  func present(_ viewController: ViewController) -> Navigator {
-    return scheduleNavigation(viewController: viewController, navigationBlock: doPresent, animated: false)
+  func present(_ viewController: ViewController) -> NavigationSequence {
+    let task = PresentTask(viewControllerToPresent: viewController, sequence: self)
+    sequence.append(task)
+    return self
   }
   
   @discardableResult
-  func dismissAnimated() -> Navigator {
-    let newTopViewController = topViewControllerAfterDismiss()
-    return scheduleNavigation(viewController: newTopViewController, navigationBlock: doDismiss, animated: true)
-  }
-  
-  func topViewControllerAfterDismiss() -> ViewController {
-    var presentingVC = viewController.presentingViewController!
-    if let nav = presentingVC as? UINavigationController {
-      presentingVC = nav.topViewController!
-    }
-    return presentingVC as! ViewController
+  func dismissAnimated() -> NavigationSequence {
+    let task = DismissTask(sequence: self, animated: true)
+    sequence.append(task)
+    return self
   }
   
   @discardableResult
-  func dismiss() -> Navigator {
-    let newTopViewController = topViewControllerAfterDismiss()
-    return scheduleNavigation(viewController: newTopViewController, navigationBlock: dismissTask, animated: false)
+  func dismiss() -> NavigationSequence {
+    let task = DismissTask(sequence: self)
+    sequence.append(task)
+    return self
   }
   
-  private func scheduleNavigation(viewController: ViewController, navigationBlock: ((Void) -> Void)?, animated: Bool) -> Navigator {
-    self.viewController = viewController
-    self.navigationBlock = navigationBlock
-    self.animated = animated
+  func navigate() {
+    guard sequence.count > 0 else { return }
+    
+    let task = sequence.removeFirst()
+    task.perform()
+  }
+}
 
-    let navigator = nextNavigator()
-    
-    if canNavigate {
-      navigate()
+class PopToRootTask: NavigationTask {
+  override func perform() {
+    rootViewController.navigationCompletion = {
+      self.sequence.navigate()
     }
     
-    return navigator
+    sequence.navigationController.popToRootViewController(animated: animated)
   }
   
-  private func nextNavigator() -> Navigator {
-    let navigator = Navigator()
-    navigator.navigationController = navigationController
-    navigator.canNavigate = false
-    
-    viewController.navigationCompletion = { viewController in
-      self.viewController  = viewController
-      navigator.canNavigate = true
-    }
-    
-    return navigator
+  var rootViewController: ViewController {
+    return sequence.navigationController.viewControllers.first as! ViewController
+  }
+}
+
+extension NavigationSequence {
+  @discardableResult
+  func popToRootAnimated() -> NavigationSequence {
+    let task = PopToRootTask(sequence: self, animated: true)
+    sequence.append(task)
+    return self
   }
   
-  private func doPush() {
-    navigationController.pushViewController(viewController, animated: animated)
-  }
-  
-  private func doPop() {
-    navigationController.popViewController(animated: animated)
-  }
-  
-  private func doPresent() {
-    DispatchQueue.main.async {
-      self.navigationController.present(self.viewController, animated: self.animated, completion: nil)
-    }
-  }
-  
-  private func doDismiss() {
-    DispatchQueue.main.async {
-      self.navigationController.dismiss(animated: self.animated, completion: nil)
-    }
-  }
-  
-  private func navigate() {
-    navigationBlock?()
+  @discardableResult
+  func popToRoot() -> NavigationSequence {
+    let task = PopToRootTask(sequence: self)
+    sequence.append(task)
+    return self
   }
 }
 
@@ -164,7 +226,11 @@ class Blue: ViewController {
   }
   
   @IBAction func tap(_ sender: Any) {
-    navigator().pushAnimated(Red()).popAnimated().presentAnimated(Yellow()).dismissAnimated()
+    NavigationSequence.instantiate(for: self).push(Red()).push(Green()).present(Yellow()).navigate()
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+      NavigationSequence.instantiate(for: self).dismissAnimated().popToRootAnimated().presentAnimated(Yellow()).navigate()
+    }
   }
 }
 
@@ -199,8 +265,6 @@ class Yellow: ViewController {
   }
   
   func close() {
-//    dismissAnimated() { viewController in
-//      viewController.popToRootAnimated()
-//    }
+    NavigationSequence.instantiate(for: self).dismissAnimated().navigate()
   }
 }
