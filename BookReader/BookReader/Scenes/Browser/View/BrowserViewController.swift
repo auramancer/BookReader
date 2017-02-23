@@ -57,8 +57,9 @@ class BrowserViewController: ViewController {
     webView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { (html, error) in
       guard let html = html as? String else { return }
       
+      //print(html)
       let urls = self.matches(of: "\"[^\"]*?[0-9]*\\.html", in: html)
-      urls.forEach { print($0) }
+      //urls.forEach { print($0) }
     }
   }
   
@@ -78,6 +79,7 @@ class BrowserViewController: ViewController {
 extension BrowserViewController: WKNavigationDelegate {
   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     if let url = webView.url {
+      //print(url)
       save(url)
     }
   }

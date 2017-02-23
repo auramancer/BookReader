@@ -16,6 +16,7 @@
 		C302D36B1E5CA4A500DCA962 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C302D3531E5CA31400DCA962 /* Main.storyboard */; };
 		C302D36C1E5CA4A500DCA962 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C302D3551E5CA31400DCA962 /* Info.plist */; };
 		C302D36E1E5CA7DB00DCA962 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302D36D1E5CA7DB00DCA962 /* Utilities.swift */; };
+		C332ADE31E5DA9F9005381C9 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332ADE21E5DA9F9005381C9 /* test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		C302D35D1E5CA31400DCA962 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		C302D35F1E5CA31400DCA962 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C302D36D1E5CA7DB00DCA962 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C332ADE21E5DA9F9005381C9 /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				C302D35D1E5CA31400DCA962 /* BrowserViewController.swift */,
+				C332ADE21E5DA9F9005381C9 /* test.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				C302D3661E5CA31500DCA962 /* ViewController.swift in Sources */,
 				C302D3601E5CA31400DCA962 /* AppDelegate.swift in Sources */,
 				C302D36E1E5CA7DB00DCA962 /* Utilities.swift in Sources */,
+				C332ADE31E5DA9F9005381C9 /* test.swift in Sources */,
 				C302D3651E5CA31500DCA962 /* BrowserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +490,7 @@
 				C302D3391E5CA2A500DCA962 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C302D33A1E5CA2A500DCA962 /* Build configuration list for PBXNativeTarget "BookReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +499,7 @@
 				C302D33C1E5CA2A500DCA962 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
