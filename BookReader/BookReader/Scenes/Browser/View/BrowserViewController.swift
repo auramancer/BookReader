@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 
-class BrowserViewController: ViewController {
+class BrowserViewController: UIViewController {
   @IBOutlet weak var addressField: UITextField!
   @IBOutlet weak var webViewContainer: UIView!
   var webView: WKWebView!
