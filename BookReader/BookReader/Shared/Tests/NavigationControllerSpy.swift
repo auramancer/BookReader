@@ -8,25 +8,34 @@ class NavigationControllerSpy: UINavigationController {
   }
   
   override func popViewController(animated: Bool) -> UIViewController? {
-    let count = viewControllers.count
-    let newTopIndex = count > 1 ? count - 1 : 0
-    
-    delegate?.navigationController?(self, willShow: viewController, animated: animated)
-    viewControllers.append(viewController)
-    delegate?.navigationController?(self, didShow: viewController, animated: animated)
-    
-    return nil
+    let index = viewControllers.count - 2
+    return popToViewController(at: index, animated: animated)?.first
   }
   
   override func popToRootViewController(animated: Bool) -> [UIViewController]? {
-    return []
+    return popToViewController(at: 0, animated: animated)
   }
-  
+
   override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
-    return []
+    let index = viewControllers.index(of: viewController)
+    return popToViewController(at: index, animated: animated)
   }
   
-  var _presentedViewController: UIViewController?
+  private func popToViewController(at index: Int?, animated: Bool) -> [UIViewController]? {
+    guard let index = index,
+      index >= 0 && index < viewControllers.count - 1 else { return nil }
+    
+    let popped = Array(viewControllers.suffix(from: index + 1))
+    let newTop = viewControllers[index]
+    
+    delegate?.navigationController?(self, willShow: newTop, animated: animated)
+    viewControllers = Array(viewControllers.prefix(through: index))
+    delegate?.navigationController?(self, didShow: newTop, animated: animated)
+    
+    return popped
+  }
+  
+  private var _presentedViewController: UIViewController?
   
   override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
     _presentedViewController = viewControllerToPresent
@@ -34,11 +43,16 @@ class NavigationControllerSpy: UINavigationController {
   }
   
   override var presentedViewController: UIViewController? {
-    return _presentedViewController
+    get {
+      return _presentedViewController
+    }
+    set {
+      _presentedViewController = newValue
+    }
   }
   
-//
-//  override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-//    
-//  }
+  override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+    _presentedViewController = nil
+    completion?()
+  }
 }

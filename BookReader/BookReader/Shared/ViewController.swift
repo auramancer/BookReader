@@ -8,10 +8,12 @@ class Blue: UIViewController {
   }
   
   @IBAction func tap(_ sender: Any) {
-    navigationHelper?.navigationController.viewControllers = []
+    self.navigationHelper?.beginSchedule().push(Red()).endSchedule()
+    
     
     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-      self.navigationHelper?.beginSchedule().presentAnimated(Yellow()).endSchedule()
+      let a = self.navigationController?.popToRootViewController(animated: false)
+      print(a?.count)
     }
   }
   

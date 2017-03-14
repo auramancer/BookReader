@@ -22,4 +22,8 @@ class ViewControllerSpy: UIViewController, Setupable {
   static func ==(lhs: ViewControllerSpy, rhs: ViewControllerSpy) -> Bool {
     return lhs.name == rhs.name
   }
+  
+  override var description: String {
+    return name
+  }
 }
