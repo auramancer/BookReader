@@ -28,6 +28,8 @@
 		C39375BA1E730A4D002B529D /* NavigationControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39375B51E730A33002B529D /* NavigationControllerSpy.swift */; };
 		C39375BC1E730AD0002B529D /* TestInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = C39375BB1E730AD0002B529D /* TestInfo.plist */; };
 		C39375BE1E730BB3002B529D /* ViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39375BD1E730BB3002B529D /* ViewControllerSpy.swift */; };
+		C3F2A6871EBCE76200500D55 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2A6861EBCE76200500D55 /* Device.swift */; };
+		C3F2A6891EBCE7A500500D55 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2A6881EBCE7A500500D55 /* System.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		C39375B61E730A33002B529D /* NavigationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerTests.swift; sourceTree = "<group>"; };
 		C39375BB1E730AD0002B529D /* TestInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestInfo.plist; sourceTree = "<group>"; };
 		C39375BD1E730BB3002B529D /* ViewControllerSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSpy.swift; sourceTree = "<group>"; };
+		C3F2A6861EBCE76200500D55 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		C3F2A6881EBCE7A500500D55 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,12 +196,12 @@
 		C302D35E1E5CA31400DCA962 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C3F2A6851EBCE74B00500D55 /* Utilities */,
 				C39375B41E730A33002B529D /* Tests */,
 				C39375A31E730664002B529D /* NavigationHelper.swift */,
 				C39375A41E730664002B529D /* NavigationManager.swift */,
 				C39375A51E730664002B529D /* NavigatoinTasks */,
 				C302D35F1E5CA31400DCA962 /* ViewController.swift */,
-				C302D36D1E5CA7DB00DCA962 /* Utilities.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -223,6 +227,16 @@
 				C39375B61E730A33002B529D /* NavigationManagerTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		C3F2A6851EBCE74B00500D55 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C3F2A6861EBCE76200500D55 /* Device.swift */,
+				C3F2A6881EBCE7A500500D55 /* System.swift */,
+				C302D36D1E5CA7DB00DCA962 /* Utilities.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,8 +349,10 @@
 				C39375AC1E730664002B529D /* NavigationHelper.swift in Sources */,
 				C39375B11E730664002B529D /* PopToOrPushTask.swift in Sources */,
 				C39375AD1E730664002B529D /* NavigationManager.swift in Sources */,
+				C3F2A6871EBCE76200500D55 /* Device.swift in Sources */,
 				C39375B01E730664002B529D /* PopTask.swift in Sources */,
 				C39375AE1E730664002B529D /* DismissTask.swift in Sources */,
+				C3F2A6891EBCE7A500500D55 /* System.swift in Sources */,
 				C302D3601E5CA31400DCA962 /* AppDelegate.swift in Sources */,
 				C39375B21E730664002B529D /* PresentTask.swift in Sources */,
 				C39375B31E730664002B529D /* PushTask.swift in Sources */,
