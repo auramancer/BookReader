@@ -205,8 +205,8 @@
 		C39375A51E730664002B529D /* NavigatoinTasks */ = {
 			isa = PBXGroup;
 			children = (
-				C39375A61E730664002B529D /* DismissTask.swift */,
 				C39375A71E730664002B529D /* NavigationTask.swift */,
+				C39375A61E730664002B529D /* DismissTask.swift */,
 				C39375A81E730664002B529D /* PopTask.swift */,
 				C39375A91E730664002B529D /* PopToOrPushTask.swift */,
 				C39375AA1E730664002B529D /* PresentTask.swift */,

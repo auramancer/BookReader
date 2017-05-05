@@ -19,6 +19,10 @@ class NavigationHelper {
                                            object: nil)
   }
   
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
   func enqueueTask(_ task: NavigationTask, data: Any?, animated: Bool) {
     task.navigationController = navigationController
     task.data = data
@@ -47,18 +51,25 @@ class NavigationHelper {
     }
   }
   
-  func beginSchedule() -> NavigationHelper {
+  func schedule() -> NavigationHelper {
     lock.lock()
     return self
   }
   
-  func endSchedule(completion: (() -> Void)? = nil) {
+  func run(completion: (() -> Void)? = nil) {
     sequenceCompletion = completion
     enqueueTask(NavigationCompleteTask(), data: nil, animated: false)
     
     lock.unlock()
     
     executeNextTask()
+  }
+  
+  func reset() {
+    tasks.removeAll()
+    currentTask = nil
+    sequenceCompletion = nil
+    lock.unlock()
   }
   
   @objc func viewControllerShowed() {

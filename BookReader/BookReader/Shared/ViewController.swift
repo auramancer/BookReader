@@ -8,13 +8,7 @@ class Blue: UIViewController {
   }
   
   @IBAction func tap(_ sender: Any) {
-    self.navigationHelper?.beginSchedule().push(Red()).endSchedule()
-    
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-      let a = self.navigationController?.popToRootViewController(animated: false)
-      print(a?.count)
-    }
+    self.navigationHelper?.schedule().push(Red()).run()
   }
   
   func isNotBlue(vc: UIViewController) -> Bool {
@@ -50,6 +44,6 @@ class Yellow: UIViewController {
   }
   
   func close() {
-    navigationHelper?.beginSchedule().dismissAnimated().endSchedule()
+    navigationHelper?.schedule().dismissAnimated().run()
   }
 }

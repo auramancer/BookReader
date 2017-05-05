@@ -18,13 +18,16 @@ class NavigationManagerTests: XCTestCase {
     navigationController = NavigationControllerSpy()
     
     manager = NavigationManager()
-    manager.navigationController = navigationController
+  }
+  
+  var navigationHelper: NavigationHelper {
+    return manager.navigationHelper(for: navigationController)
   }
   
   // MARK: Push
   
   func testPushOne_WhenStackIsEmpty() {
-    manager.navigationHelper?.beginSchedule().push(vc1).endSchedule()
+    navigationHelper.schedule().push(vc1).run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -32,13 +35,13 @@ class NavigationManagerTests: XCTestCase {
   func testPushOne_WhenStackContainsOne() {
     navigationController.viewControllers = [vc1]
     
-    manager.navigationHelper?.beginSchedule().push(vc2).endSchedule()
+    navigationHelper.schedule().push(vc2).run()
     
     assertNavigationController(contains: [vc1, vc2], presents: nil)
   }
 
   func testPushMultiple_WhenStackIsEmpty() {
-    manager.navigationHelper?.beginSchedule().push(vc1).push(vc2).push(vc3).endSchedule()
+    navigationHelper.schedule().push(vc1).push(vc2).push(vc3).run()
     
     assertNavigationController(contains: [vc1, vc2, vc3], presents: nil)
   }
@@ -46,7 +49,7 @@ class NavigationManagerTests: XCTestCase {
   // MARK: Pop
   
   func testPopOne_WhenStackIsEmpty() {
-    manager.navigationHelper?.beginSchedule().pop().endSchedule()
+    navigationHelper.schedule().pop().run()
     
     assertNavigationController(contains: [], presents: nil)
   }
@@ -54,7 +57,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopOne_WhenStackContainsOne() {
     navigationController.viewControllers = [vc1]
     
-    manager.navigationHelper?.beginSchedule().pop().endSchedule()
+    navigationHelper.schedule().pop().run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -62,7 +65,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopOne_WhenStackContainsMultiple() {
     navigationController.viewControllers = [vc1, vc2, vc3]
     
-    manager.navigationHelper?.beginSchedule().pop().endSchedule()
+    navigationHelper.schedule().pop().run()
     
     assertNavigationController(contains: [vc1, vc2], presents: nil)
   }
@@ -70,7 +73,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopMultiple_WhenStackContainsMultiple() {
     navigationController.viewControllers = [vc1, vc2, vc3]
     
-    manager.navigationHelper?.beginSchedule().pop().pop().pop().endSchedule()
+    navigationHelper.schedule().pop().pop().pop().run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -78,7 +81,7 @@ class NavigationManagerTests: XCTestCase {
   // MARK: Pop to root
   
   func testPopToRoot_WhenStackIsEmpty() {
-    manager.navigationHelper?.beginSchedule().popToRoot().endSchedule()
+    navigationHelper.schedule().popToRoot().run()
     
     assertNavigationController(contains: [], presents: nil)
   }
@@ -86,7 +89,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopToRoot_WhenStackContainsOne() {
     navigationController.viewControllers = [vc1]
     
-    manager.navigationHelper?.beginSchedule().popToRoot().endSchedule()
+    navigationHelper.schedule().popToRoot().run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -94,7 +97,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopToRoot_WhenStackContainsMultiple() {
     navigationController.viewControllers = [vc1, vc2, vc3]
     
-    manager.navigationHelper?.beginSchedule().popToRoot().endSchedule()
+    navigationHelper.schedule().popToRoot().run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -102,7 +105,7 @@ class NavigationManagerTests: XCTestCase {
   // MARK: Pop to
   
   func testPopTo_WhenStackIsEmpty() {
-    manager.navigationHelper?.beginSchedule().popTo({ $0 == self.vc1 }).endSchedule()
+    navigationHelper.schedule().popTo({ $0 == self.vc1 }).run()
     
     assertNavigationController(contains: [], presents: nil)
   }
@@ -110,7 +113,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopTo_WhenStackContainsOne() {
     navigationController.viewControllers = [vc1]
     
-    manager.navigationHelper?.beginSchedule().popTo({ $0 == self.vc1 }).endSchedule()
+    navigationHelper.schedule().popTo({ $0 == self.vc1 }).run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -118,7 +121,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopTo_WhenStackContainsMultiple() {
     navigationController.viewControllers = [vc1, vc2, vc3]
     
-    manager.navigationHelper?.beginSchedule().popTo({ $0 == self.vc2 }).endSchedule()
+    navigationHelper.schedule().popTo({ $0 == self.vc2 }).run()
     
     assertNavigationController(contains: [vc1, vc2], presents: nil)
   }
@@ -126,7 +129,7 @@ class NavigationManagerTests: XCTestCase {
   // MARK: Pop while
   
   func testPopWhile_WhenStackIsEmpty() {
-    manager.navigationHelper?.beginSchedule().popWhile({ $0 != self.vc1 }).endSchedule()
+    navigationHelper.schedule().popWhile({ $0 != self.vc1 }).run()
     
     assertNavigationController(contains: [], presents: nil)
   }
@@ -134,7 +137,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopWhile_WhenStackContainsOne() {
     navigationController.viewControllers = [vc1]
     
-    manager.navigationHelper?.beginSchedule().popWhile({ $0 != self.vc1 }).endSchedule()
+    navigationHelper.schedule().popWhile({ $0 != self.vc1 }).run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -142,7 +145,7 @@ class NavigationManagerTests: XCTestCase {
   func testPopWhile_WhenStackContainsMultiple() {
     navigationController.viewControllers = [vc1, vc2, vc3]
     
-    manager.navigationHelper?.beginSchedule().popWhile({ $0 != self.vc2 }).endSchedule()
+    navigationHelper.schedule().popWhile({ $0 != self.vc2 }).run()
     
     assertNavigationController(contains: [vc1, vc2], presents: nil)
   }
@@ -150,7 +153,7 @@ class NavigationManagerTests: XCTestCase {
   // MARK: Present
 
   func testPresent_WhenStackIsEmpty() {
-    manager.navigationHelper?.beginSchedule().present(vc1).endSchedule()
+    navigationHelper.schedule().present(vc1).run()
     
     assertNavigationController(contains: [], presents: vc1)
   }
@@ -158,7 +161,7 @@ class NavigationManagerTests: XCTestCase {
   func testPresent_WhenStackContainsOne() {
     navigationController.viewControllers = [vc1]
     
-    manager.navigationHelper?.beginSchedule().present(vc2).endSchedule()
+    navigationHelper.schedule().present(vc2).run()
     
     assertNavigationController(contains: [vc1], presents: vc2)
   }
@@ -166,7 +169,7 @@ class NavigationManagerTests: XCTestCase {
   // MARK: Dismiss
   
   func testDismissNothing_WhenStackIsEmpty() {
-    manager.navigationHelper?.beginSchedule().dismiss().endSchedule()
+    navigationHelper.schedule().dismiss().run()
     
     assertNavigationController(contains: [], presents: nil)
   }
@@ -174,7 +177,7 @@ class NavigationManagerTests: XCTestCase {
   func testDismissSomthing_WhenStackIsEmpty() {
     navigationController.presentedViewController = vc1
     
-    manager.navigationHelper?.beginSchedule().dismiss().endSchedule()
+    navigationHelper.schedule().dismiss().run()
     
     assertNavigationController(contains: [], presents: nil)
   }
@@ -182,7 +185,7 @@ class NavigationManagerTests: XCTestCase {
   func testDismissNothing_WhenStackContainsOne() {
     navigationController.viewControllers = [vc1]
     
-    manager.navigationHelper?.beginSchedule().dismiss().endSchedule()
+    navigationHelper.schedule().dismiss().run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -191,7 +194,7 @@ class NavigationManagerTests: XCTestCase {
     navigationController.viewControllers = [vc1]
     navigationController.presentedViewController = vc2
     
-    manager.navigationHelper?.beginSchedule().dismiss().endSchedule()
+    navigationHelper.schedule().dismiss().run()
     
     assertNavigationController(contains: [vc1], presents: nil)
   }
@@ -202,14 +205,16 @@ class NavigationManagerTests: XCTestCase {
     navigationController.viewControllers = [vc1, vc2]
     navigationController.presentedViewController = vc3
     
-    manager.navigationHelper?.beginSchedule().dismiss().popToRoot().push(vc4).present(vc5).endSchedule()
+    navigationHelper.schedule().dismiss().popToRoot().push(vc4).present(vc5).run()
     
     assertNavigationController(contains: [vc1, vc4], presents: vc5)
   }
   
   func assertNavigationController(contains viewControllers: [UIViewController],
-                                  presents presentedViewController: UIViewController?) {
-    XCTAssertEqual(navigationController.viewControllers, viewControllers)
-    XCTAssertEqual(navigationController.presentedViewController, presentedViewController)
+                                  presents presentedViewController: UIViewController?,
+                                  file: StaticString = #file,
+                                  line: UInt = #line) {
+    XCTAssertEqual(navigationController.viewControllers, viewControllers, file: file, line: line)
+    XCTAssertEqual(navigationController.presentedViewController, presentedViewController, file: file, line: line)
   }
 }

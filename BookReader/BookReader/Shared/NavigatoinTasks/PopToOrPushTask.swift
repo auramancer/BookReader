@@ -14,8 +14,7 @@ class PopToOrPushTask: PopTask {
   var instantiater: PopToOrPushable!
   
   override func execute() {
-    if let viewController = viewControllerPopTo,
-      canPopTo(viewController) {
+    if let viewController = viewControllerPopTo {
       doPopTo(viewController)
     }
     else {

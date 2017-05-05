@@ -3,33 +3,35 @@ import UIKit
 @objc class NavigationManager: NSObject {
   static let shared = NavigationManager()
   
-  var navigationHelper: NavigationHelper?
-  
-  var navigationController: UINavigationController? {
-    didSet {
-      resetHelper()
-    }
-  }
+  var navigationHelpers = [UINavigationController : NavigationHelper]()
   
   override init() {
     super.init()
     
-    resetHelper()
     observe()
   }
   
-  @objc private func resetHelper() {
-    if let nav = navigationController {
-      navigationHelper = NavigationHelper(for: nav)
-      nav.delegate = self
+  func navigationHelper(for navigationController: UINavigationController) -> NavigationHelper {
+    if let exsistingNavigationHelper = navigationHelpers[navigationController] {
+      return exsistingNavigationHelper
+    }
+    else {
+      navigationController.delegate = self
+      let newNavigationHelper = NavigationHelper(for: navigationController)
+      navigationHelpers[navigationController] = newNavigationHelper
+      return newNavigationHelper
     }
   }
   
   private func observe() {
     NotificationCenter.default.addObserver(self,
-                                           selector: #selector(resetHelper),
+                                           selector: #selector(resetHelpers),
                                            name: .UIApplicationWillResignActive,
                                            object: nil)
+  }
+  
+  @objc private func resetHelpers() {
+    navigationHelpers.values.forEach { $0.reset() }
   }
 }
 
@@ -56,6 +58,8 @@ extension NavigationManager: UINavigationControllerDelegate {
 
 extension UIViewController {
   var navigationHelper: NavigationHelper? {
-    return NavigationManager.shared.navigationHelper
+    guard let navigationController = navigationController else { return nil }
+    
+    return NavigationManager.shared.navigationHelper(for: navigationController)
   }
 }

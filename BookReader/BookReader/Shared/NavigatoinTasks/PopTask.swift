@@ -2,8 +2,7 @@ import UIKit
 
 class PopTask: NavigationTask {
   override func execute() {
-    if let viewController = viewControllerPopTo,
-      canPopTo(viewController) {
+    if let viewController = viewControllerPopTo {
       doPopTo(viewController)
     }
     else {
@@ -11,13 +10,19 @@ class PopTask: NavigationTask {
     }
   }
   
-  func canPopTo(_ viewController: UIViewController) -> Bool {
-    return viewController != navigationController.topViewController
+  func isAlreadyOnTop(_ viewController: UIViewController) -> Bool {
+    return viewController == navigationController.topViewController
   }
   
   func doPopTo(_ viewController: UIViewController) {
     willNavigate(to: viewController)
-    _ = navigationController.popToViewController(viewController, animated: animated)
+    
+    if (!isAlreadyOnTop(viewController)) {
+      _ = navigationController.popToViewController(viewController, animated: animated)
+    }
+    else {
+      completion?()
+    }
   }
   
   var viewControllerPopTo: UIViewController? {
