@@ -1,11 +1,3 @@
-//
-//  Utilities.swift
-//  BookReader
-//
-//  Created by Feng Xiong on 21/02/2017.
-//  Copyright © 2017 FFStudio. All rights reserved.
-//
-
 import UIKit
 
 let isRunningUnitTests: Bool = NSClassFromString("XCTest") != nil

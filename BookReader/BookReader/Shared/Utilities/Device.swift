@@ -1,11 +1,3 @@
-//
-//  Device.swift
-//  BookReader
-//
-//  Created by fengx on 05/05/2017.
-//  Copyright © 2017 FFStudio. All rights reserved.
-//
-
 import UIKit
 
 struct Device {

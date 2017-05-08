@@ -3,7 +3,7 @@ import UIKit
 
 class ViewControllerSpy: UIViewController, Setupable {
   var name: String = ""
-  var data: Any?
+  var data: String?
   
   init(_ name: String) {
     self.name = name
@@ -16,7 +16,7 @@ class ViewControllerSpy: UIViewController, Setupable {
   }
   
   func setup(with data: Any?) {
-    self.data = data
+    self.data = data as? String
   }
   
   static func ==(lhs: ViewControllerSpy, rhs: ViewControllerSpy) -> Bool {

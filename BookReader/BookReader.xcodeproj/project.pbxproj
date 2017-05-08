@@ -16,6 +16,10 @@
 		C302D36C1E5CA4A500DCA962 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C302D3551E5CA31400DCA962 /* Info.plist */; };
 		C302D36E1E5CA7DB00DCA962 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302D36D1E5CA7DB00DCA962 /* Utilities.swift */; };
 		C332ADE31E5DA9F9005381C9 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332ADE21E5DA9F9005381C9 /* test.swift */; };
+		C380AD9C1EC07E4A00757886 /* NavigationManagerPushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380AD9B1EC07E4A00757886 /* NavigationManagerPushTests.swift */; };
+		C380AD9F1EC0820400757886 /* NavigationManagerPopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380AD9D1EC081BA00757886 /* NavigationManagerPopTests.swift */; };
+		C380ADA21EC082B700757886 /* NavigationManagerPresentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380ADA01EC082A700757886 /* NavigationManagerPresentTests.swift */; };
+		C380ADA41EC082CF00757886 /* NavigationManagerDismissTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380ADA31EC082CF00757886 /* NavigationManagerDismissTests.swift */; };
 		C39375AC1E730664002B529D /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39375A31E730664002B529D /* NavigationHelper.swift */; };
 		C39375AD1E730664002B529D /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39375A41E730664002B529D /* NavigationManager.swift */; };
 		C39375AE1E730664002B529D /* DismissTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39375A61E730664002B529D /* DismissTask.swift */; };
@@ -54,6 +58,10 @@
 		C302D35F1E5CA31400DCA962 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C302D36D1E5CA7DB00DCA962 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C332ADE21E5DA9F9005381C9 /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		C380AD9B1EC07E4A00757886 /* NavigationManagerPushTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerPushTests.swift; sourceTree = "<group>"; };
+		C380AD9D1EC081BA00757886 /* NavigationManagerPopTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerPopTests.swift; sourceTree = "<group>"; };
+		C380ADA01EC082A700757886 /* NavigationManagerPresentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerPresentTests.swift; sourceTree = "<group>"; };
+		C380ADA31EC082CF00757886 /* NavigationManagerDismissTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerDismissTests.swift; sourceTree = "<group>"; };
 		C39375A31E730664002B529D /* NavigationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		C39375A41E730664002B529D /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		C39375A61E730664002B529D /* DismissTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissTask.swift; sourceTree = "<group>"; };
@@ -196,14 +204,22 @@
 		C302D35E1E5CA31400DCA962 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C380ADA51EC0863800757886 /* Navigation */,
 				C3F2A6851EBCE74B00500D55 /* Utilities */,
-				C39375B41E730A33002B529D /* Tests */,
-				C39375A31E730664002B529D /* NavigationHelper.swift */,
-				C39375A41E730664002B529D /* NavigationManager.swift */,
-				C39375A51E730664002B529D /* NavigatoinTasks */,
 				C302D35F1E5CA31400DCA962 /* ViewController.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		C380ADA51EC0863800757886 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				C39375B41E730A33002B529D /* Tests */,
+				C39375A41E730664002B529D /* NavigationManager.swift */,
+				C39375A31E730664002B529D /* NavigationHelper.swift */,
+				C39375A51E730664002B529D /* NavigatoinTasks */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		C39375A51E730664002B529D /* NavigatoinTasks */ = {
@@ -225,6 +241,10 @@
 				C39375B51E730A33002B529D /* NavigationControllerSpy.swift */,
 				C39375BD1E730BB3002B529D /* ViewControllerSpy.swift */,
 				C39375B61E730A33002B529D /* NavigationManagerTests.swift */,
+				C380AD9B1EC07E4A00757886 /* NavigationManagerPushTests.swift */,
+				C380AD9D1EC081BA00757886 /* NavigationManagerPopTests.swift */,
+				C380ADA01EC082A700757886 /* NavigationManagerPresentTests.swift */,
+				C380ADA31EC082CF00757886 /* NavigationManagerDismissTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -236,7 +256,7 @@
 				C3F2A6881EBCE7A500500D55 /* System.swift */,
 				C302D36D1E5CA7DB00DCA962 /* Utilities.swift */,
 			);
-			name = Utilities;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,8 +386,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C380ADA41EC082CF00757886 /* NavigationManagerDismissTests.swift in Sources */,
 				C39375BA1E730A4D002B529D /* NavigationControllerSpy.swift in Sources */,
+				C380ADA21EC082B700757886 /* NavigationManagerPresentTests.swift in Sources */,
+				C380AD9F1EC0820400757886 /* NavigationManagerPopTests.swift in Sources */,
 				C39375B91E730A49002B529D /* NavigationManagerTests.swift in Sources */,
+				C380AD9C1EC07E4A00757886 /* NavigationManagerPushTests.swift in Sources */,
 				C39375BE1E730BB3002B529D /* ViewControllerSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
