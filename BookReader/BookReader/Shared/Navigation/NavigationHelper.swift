@@ -12,10 +12,9 @@ class NavigationHelper {
   init(for navigationController: UINavigationController) {
     self.navigationController = navigationController
     
-    let notification = NSNotification.Name(NavigationManager.Notification.didShowViewController)
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(viewControllerShowed),
-                                           name: notification,
+                                           name: .didShowViewController,
                                            object: nil)
   }
   

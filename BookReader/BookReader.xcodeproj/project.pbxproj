@@ -15,7 +15,11 @@
 		C302D36B1E5CA4A500DCA962 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C302D3531E5CA31400DCA962 /* Main.storyboard */; };
 		C302D36C1E5CA4A500DCA962 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C302D3551E5CA31400DCA962 /* Info.plist */; };
 		C302D36E1E5CA7DB00DCA962 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302D36D1E5CA7DB00DCA962 /* Utilities.swift */; };
-		C332ADE31E5DA9F9005381C9 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332ADE21E5DA9F9005381C9 /* test.swift */; };
+		C30EF16A1F0134AA0021814F /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30EF1691F0134AA0021814F /* AlertView.swift */; };
+		C30EF16C1F0139910021814F /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C30EF16B1F0139910021814F /* AlertView.xib */; };
+		C37234E81F0108CC00EDE30C /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37234E71F0108CC00EDE30C /* AlertManager.swift */; };
+		C37234EA1F01090900EDE30C /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37234E91F01090900EDE30C /* Alert.swift */; };
+		C37234EC1F0112CD00EDE30C /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37234EB1F0112CD00EDE30C /* AlertController.swift */; };
 		C380AD9C1EC07E4A00757886 /* NavigationManagerPushTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380AD9B1EC07E4A00757886 /* NavigationManagerPushTests.swift */; };
 		C380AD9F1EC0820400757886 /* NavigationManagerPopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380AD9D1EC081BA00757886 /* NavigationManagerPopTests.swift */; };
 		C380ADA21EC082B700757886 /* NavigationManagerPresentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C380ADA01EC082A700757886 /* NavigationManagerPresentTests.swift */; };
@@ -57,7 +61,11 @@
 		C302D35D1E5CA31400DCA962 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		C302D35F1E5CA31400DCA962 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C302D36D1E5CA7DB00DCA962 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		C332ADE21E5DA9F9005381C9 /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		C30EF1691F0134AA0021814F /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		C30EF16B1F0139910021814F /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
+		C37234E71F0108CC00EDE30C /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		C37234E91F01090900EDE30C /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		C37234EB1F0112CD00EDE30C /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C380AD9B1EC07E4A00757886 /* NavigationManagerPushTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerPushTests.swift; sourceTree = "<group>"; };
 		C380AD9D1EC081BA00757886 /* NavigationManagerPopTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerPopTests.swift; sourceTree = "<group>"; };
 		C380ADA01EC082A700757886 /* NavigationManagerPresentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerPresentTests.swift; sourceTree = "<group>"; };
@@ -196,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				C302D35D1E5CA31400DCA962 /* BrowserViewController.swift */,
-				C332ADE21E5DA9F9005381C9 /* test.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,11 +211,24 @@
 		C302D35E1E5CA31400DCA962 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C37234E61F01086D00EDE30C /* Alert */,
 				C380ADA51EC0863800757886 /* Navigation */,
 				C3F2A6851EBCE74B00500D55 /* Utilities */,
 				C302D35F1E5CA31400DCA962 /* ViewController.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		C37234E61F01086D00EDE30C /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				C37234E71F0108CC00EDE30C /* AlertManager.swift */,
+				C37234E91F01090900EDE30C /* Alert.swift */,
+				C37234EB1F0112CD00EDE30C /* AlertController.swift */,
+				C30EF1691F0134AA0021814F /* AlertView.swift */,
+				C30EF16B1F0139910021814F /* AlertView.xib */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		C380ADA51EC0863800757886 /* Navigation */ = {
@@ -309,6 +329,7 @@
 				TargetAttributes = {
 					C302D3191E5CA2A500DCA962 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 933WK8Z867;
 						ProvisioningStyle = Automatic;
 					};
 					C302D32D1E5CA2A500DCA962 = {
@@ -344,6 +365,7 @@
 			files = (
 				C302D3691E5CA4A500DCA962 /* Assets.xcassets in Resources */,
 				C302D36A1E5CA4A500DCA962 /* LaunchScreen.storyboard in Resources */,
+				C30EF16C1F0139910021814F /* AlertView.xib in Resources */,
 				C302D36B1E5CA4A500DCA962 /* Main.storyboard in Resources */,
 				C302D36C1E5CA4A500DCA962 /* Info.plist in Resources */,
 			);
@@ -366,18 +388,21 @@
 			files = (
 				C302D3661E5CA31500DCA962 /* ViewController.swift in Sources */,
 				C39375AF1E730664002B529D /* NavigationTask.swift in Sources */,
+				C37234E81F0108CC00EDE30C /* AlertManager.swift in Sources */,
 				C39375AC1E730664002B529D /* NavigationHelper.swift in Sources */,
 				C39375B11E730664002B529D /* PopToOrPushTask.swift in Sources */,
 				C39375AD1E730664002B529D /* NavigationManager.swift in Sources */,
 				C3F2A6871EBCE76200500D55 /* Device.swift in Sources */,
 				C39375B01E730664002B529D /* PopTask.swift in Sources */,
+				C37234EC1F0112CD00EDE30C /* AlertController.swift in Sources */,
 				C39375AE1E730664002B529D /* DismissTask.swift in Sources */,
 				C3F2A6891EBCE7A500500D55 /* System.swift in Sources */,
+				C30EF16A1F0134AA0021814F /* AlertView.swift in Sources */,
 				C302D3601E5CA31400DCA962 /* AppDelegate.swift in Sources */,
 				C39375B21E730664002B529D /* PresentTask.swift in Sources */,
 				C39375B31E730664002B529D /* PushTask.swift in Sources */,
 				C302D36E1E5CA7DB00DCA962 /* Utilities.swift in Sources */,
-				C332ADE31E5DA9F9005381C9 /* test.swift in Sources */,
+				C37234EA1F01090900EDE30C /* Alert.swift in Sources */,
 				C302D3651E5CA31500DCA962 /* BrowserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 933WK8Z867;
 				INFOPLIST_FILE = BookReader/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FFStudio.BookReader;
@@ -535,6 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 933WK8Z867;
 				INFOPLIST_FILE = BookReader/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FFStudio.BookReader;

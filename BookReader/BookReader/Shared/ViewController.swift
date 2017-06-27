@@ -1,4 +1,5 @@
 import UIKit
+import StoreKit
 
 class Blue: UIViewController {
   override func viewDidLoad() {
@@ -7,12 +8,16 @@ class Blue: UIViewController {
     view.backgroundColor = UIColor.blue
   }
   
-  @IBAction func tap(_ sender: Any) {
-    self.navigationHelper?.schedule().push(Red()).run()
+  override func viewDidAppear(_ animated: Bool) {
+//    if #available(iOS 10.3, *) {
+//      SKStoreReviewController.requestReview()
+//    }
+    
+    AlertManager.shared.show(Alert(title: nil, message: "asdfasdf", actions: [], preferredAction: nil))
   }
   
-  func isNotBlue(vc: UIViewController) -> Bool {
-    return !(vc is Blue)
+  @IBAction func tap(_ sender: Any) {
+    self.navigationHelper?.schedule().push(Red()).run()
   }
 }
 
@@ -21,6 +26,10 @@ class Red: UIViewController {
     super.viewDidLoad()
     
     view.backgroundColor = UIColor.red
+  }
+  
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    return .portrait
   }
 }
 

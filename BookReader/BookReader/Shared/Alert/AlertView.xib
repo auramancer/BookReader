@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertController" customModule="BookReader" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="2p7-lu-alP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AlertView" customModule="BookReader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGl-kx-db9">
+                    <rect key="frame" x="38" y="248" width="300" height="171"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="n5y-6H-xBy">
+                            <rect key="frame" x="20" y="0.0" width="260" height="150.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HB4-3U-aKi">
+                                    <rect key="frame" x="109" y="0.0" width="42" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eXx-fq-zfa">
+                                    <rect key="frame" x="0.0" y="20.5" width="260" height="100"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="s11-yr-fuc"/>
+                                    </constraints>
+                                    <mutableString key="text">1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz1234567890poiuytrewqasdfghjklmnbvcxz</mutableString>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="te6-6Z-Ek5">
+                                    <rect key="frame" x="107" y="120.5" width="46" height="30"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="eXx-fq-zfa" firstAttribute="leading" secondItem="n5y-6H-xBy" secondAttribute="leading" id="9xh-wu-Coj"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="n5y-6H-xBy" secondAttribute="bottom" constant="20" symbolic="YES" id="7hZ-NJ-FZV"/>
+                        <constraint firstAttribute="trailing" secondItem="n5y-6H-xBy" secondAttribute="trailing" constant="20" symbolic="YES" id="Vgn-Ar-CcZ"/>
+                        <constraint firstAttribute="width" constant="300" id="hed-Xv-BEZ"/>
+                        <constraint firstItem="n5y-6H-xBy" firstAttribute="top" secondItem="cGl-kx-db9" secondAttribute="top" id="lIW-Ah-Mx1"/>
+                        <constraint firstItem="n5y-6H-xBy" firstAttribute="leading" secondItem="cGl-kx-db9" secondAttribute="leading" constant="20" symbolic="YES" id="sz4-hO-QCB"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="cGl-kx-db9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Wgc-9J-CC9"/>
+                <constraint firstItem="cGl-kx-db9" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rpR-HO-3Qm"/>
+            </constraints>
+            <connections>
+                <outlet property="contentView" destination="cGl-kx-db9" id="uVs-3K-lNR"/>
+                <outlet property="contentWidth" destination="hed-Xv-BEZ" id="a1d-pj-g2j"/>
+                <outlet property="messageView" destination="eXx-fq-zfa" id="art-hC-YgR"/>
+                <outlet property="messageViewHeight" destination="s11-yr-fuc" id="4Yd-FA-hoF"/>
+                <outlet property="titleLabel" destination="HB4-3U-aKi" id="Wff-w4-e0W"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -1,6 +1,6 @@
 import UIKit
 
-@objc class NavigationManager: NSObject {
+class NavigationManager: NSObject {
   static let shared = NavigationManager()
   
   var navigationHelpers = [UINavigationController : NavigationHelper]()
@@ -35,24 +35,22 @@ import UIKit
   }
 }
 
+extension Notification.Name {
+  static let willShowViewController = Notification.Name("willShowViewController")
+  static let didShowViewController = Notification.Name("didShowViewController")
+}
+
 extension NavigationManager: UINavigationControllerDelegate {
-  struct Notification {
-    static let willShowViewController = "NavigationControllerWillShowViewController"
-    static let didShowViewController = "NavigationControllerDidShowViewController"
-  }
-  
   func navigationController(_ navigationController: UINavigationController,
                             willShow viewController: UIViewController,
                             animated: Bool) {
-    let notification = NSNotification.Name(Notification.willShowViewController)
-    NotificationCenter.default.post(name: notification, object: viewController)
+    NotificationCenter.default.post(name: .willShowViewController, object: viewController)
   }
   
   func navigationController(_ navigationController: UINavigationController,
                             didShow viewController: UIViewController,
                             animated: Bool) {
-    let notification = NSNotification.Name(Notification.didShowViewController)
-    NotificationCenter.default.post(name: notification, object: viewController)
+    NotificationCenter.default.post(name: .didShowViewController, object: viewController)
   }
 }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wec-QA-Ri2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wec-QA-Ri2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -67,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="COi-hF-aGB" userLabel="Address Field">
-                                <rect key="frame" x="5" y="64" width="320" height="30"/>
+                                <rect key="frame" x="5" y="20" width="25" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="CRm-xj-dWK"/>
                                 </constraints>
@@ -79,19 +79,20 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1b-RC-rHI" userLabel="Web View Container">
-                                <rect key="frame" x="0.0" y="99" width="375" height="568"/>
+                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ida-tU-Jo3">
+                                        <rect key="frame" x="164" y="256" width="60" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUv-yX-LQC">
-                                <rect key="frame" x="330" y="64" width="40" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="3WY-Tu-Os4"/>
-                                </constraints>
-                                <state key="normal" title="缓存"/>
-                                <connections>
-                                    <action selector="download:" destination="3Su-h0-6bS" eventType="touchUpInside" id="PRs-lu-Hdl"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -99,10 +100,7 @@
                             <constraint firstItem="I1b-RC-rHI" firstAttribute="top" secondItem="COi-hF-aGB" secondAttribute="bottom" constant="5" id="Bn3-EE-SZ6"/>
                             <constraint firstItem="COi-hF-aGB" firstAttribute="top" secondItem="5Lz-qG-BD3" secondAttribute="bottom" id="CXx-Ig-oSo"/>
                             <constraint firstItem="COi-hF-aGB" firstAttribute="leading" secondItem="c2T-WT-pJZ" secondAttribute="leading" constant="5" id="a12-Y6-dXh"/>
-                            <constraint firstAttribute="trailing" secondItem="tUv-yX-LQC" secondAttribute="trailing" constant="5" id="fQc-uo-4cH"/>
                             <constraint firstItem="e5G-Mi-AsW" firstAttribute="top" secondItem="I1b-RC-rHI" secondAttribute="bottom" id="pAr-Lq-80L"/>
-                            <constraint firstItem="tUv-yX-LQC" firstAttribute="centerY" secondItem="COi-hF-aGB" secondAttribute="centerY" id="qzJ-em-OWj"/>
-                            <constraint firstItem="tUv-yX-LQC" firstAttribute="leading" secondItem="COi-hF-aGB" secondAttribute="trailing" constant="5" id="wRx-n5-2AD"/>
                             <constraint firstAttribute="leading" secondItem="I1b-RC-rHI" secondAttribute="leading" id="x19-c3-bKC"/>
                         </constraints>
                     </view>
