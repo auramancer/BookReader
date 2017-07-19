@@ -20,16 +20,6 @@
                     <view key="view" contentMode="scaleToFill" id="3Xt-9E-oqs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzf-2g-sTF">
-                                <rect key="frame" x="157" y="305" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="tap:" destination="UPs-JU-YoH" eventType="touchUpInside" id="xEs-Fg-Me9"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="fw0-cC-LmR"/>
@@ -41,7 +31,7 @@
         <!--Navigation Controller-->
         <scene sceneID="yfc-2Z-v4I">
             <objects>
-                <navigationController id="wec-QA-Ri2" sceneMemberID="viewController">
+                <navigationController id="wec-QA-Ri2" customClass="NavigationController" customModule="BookReader" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yN2-Rm-R4w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

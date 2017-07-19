@@ -36,6 +36,7 @@
 		C39375BA1E730A4D002B529D /* NavigationControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39375B51E730A33002B529D /* NavigationControllerSpy.swift */; };
 		C39375BC1E730AD0002B529D /* TestInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = C39375BB1E730AD0002B529D /* TestInfo.plist */; };
 		C39375BE1E730BB3002B529D /* ViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39375BD1E730BB3002B529D /* ViewControllerSpy.swift */; };
+		C3D9962D1F177C8600C483A4 /* LocationCheckCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D996201F177C8600C483A4 /* LocationCheckCoordinator.swift */; };
 		C3F2A6871EBCE76200500D55 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2A6861EBCE76200500D55 /* Device.swift */; };
 		C3F2A6891EBCE7A500500D55 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2A6881EBCE7A500500D55 /* System.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +83,7 @@
 		C39375B61E730A33002B529D /* NavigationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManagerTests.swift; sourceTree = "<group>"; };
 		C39375BB1E730AD0002B529D /* TestInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestInfo.plist; sourceTree = "<group>"; };
 		C39375BD1E730BB3002B529D /* ViewControllerSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSpy.swift; sourceTree = "<group>"; };
+		C3D996201F177C8600C483A4 /* LocationCheckCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCheckCoordinator.swift; sourceTree = "<group>"; };
 		C3F2A6861EBCE76200500D55 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C3F2A6881EBCE7A500500D55 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +213,7 @@
 		C302D35E1E5CA31400DCA962 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C3D9961C1F177C8600C483A4 /* LocationCheck */,
 				C37234E61F01086D00EDE30C /* Alert */,
 				C380ADA51EC0863800757886 /* Navigation */,
 				C3F2A6851EBCE74B00500D55 /* Utilities */,
@@ -267,6 +270,14 @@
 				C380ADA31EC082CF00757886 /* NavigationManagerDismissTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		C3D9961C1F177C8600C483A4 /* LocationCheck */ = {
+			isa = PBXGroup;
+			children = (
+				C3D996201F177C8600C483A4 /* LocationCheckCoordinator.swift */,
+			);
+			path = LocationCheck;
 			sourceTree = "<group>";
 		};
 		C3F2A6851EBCE74B00500D55 /* Utilities */ = {
@@ -395,6 +406,7 @@
 				C3F2A6871EBCE76200500D55 /* Device.swift in Sources */,
 				C39375B01E730664002B529D /* PopTask.swift in Sources */,
 				C37234EC1F0112CD00EDE30C /* AlertController.swift in Sources */,
+				C3D9962D1F177C8600C483A4 /* LocationCheckCoordinator.swift in Sources */,
 				C39375AE1E730664002B529D /* DismissTask.swift in Sources */,
 				C3F2A6891EBCE7A500500D55 /* System.swift in Sources */,
 				C30EF16A1F0134AA0021814F /* AlertView.swift in Sources */,
@@ -550,6 +562,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 933WK8Z867;
 				INFOPLIST_FILE = BookReader/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FFStudio.BookReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -563,6 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 933WK8Z867;
 				INFOPLIST_FILE = BookReader/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FFStudio.BookReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";

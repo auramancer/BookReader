@@ -22,6 +22,7 @@ class AlertController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    alertView?.message = "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+    alertView?.titleLabel.text = alert?.title
+    alertView?.message = alert?.message
   }
 }
