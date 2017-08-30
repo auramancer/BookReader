@@ -3,6 +3,7 @@ import UIKit
 class NavigationManager: NSObject {
   static let shared = NavigationManager()
   
+  var mainNavigationController: UINavigationController?
   var navigationHelpers = [UINavigationController : NavigationHelper]()
   
   override init() {
@@ -17,8 +18,10 @@ class NavigationManager: NSObject {
     }
     else {
       navigationController.delegate = self
+      
       let newNavigationHelper = NavigationHelper(for: navigationController)
       navigationHelpers[navigationController] = newNavigationHelper
+      
       return newNavigationHelper
     }
   }
@@ -55,9 +58,8 @@ extension NavigationManager: UINavigationControllerDelegate {
 }
 
 extension UIViewController {
-  var navigationHelper: NavigationHelper? {
-    guard let navigationController = navigationController else { return nil }
-    
-    return NavigationManager.shared.navigationHelper(for: navigationController)
+  var navigationHelper: NavigationHelper {
+    let nav = navigationController ?? NavigationManager.shared.mainNavigationController!
+    return NavigationManager.shared.navigationHelper(for: nav)
   }
 }

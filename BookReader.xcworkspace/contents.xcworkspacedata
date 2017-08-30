@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:BookReader/BookReader/Shared/TestViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:BookReader/BookReader.xcodeproj">
    </FileRef>
 </Workspace>
